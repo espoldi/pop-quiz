@@ -11,34 +11,34 @@ var a = [
     "Variable",
     "Semi-colon",
     "Mark Zuckerberg",
-    "<html>"];
+    "&lt;html&gt;"];
 
 var b = [
     "Curly Brackets",
     "Boolean",
     "Colon",
     "Charles Babbage",
-    "<script>"];
+    "&lt;script&gt;"];
 
 var c = [
     "Quotation Marks",
     "String",
     "Period",
     "Lady Ada Agusta",
-    "<form>"];
+    "&lt;form&gt;"];
 
 var d = [
     "Square Brackets",
     "Float",
     "Comma",
     "Bill Gates",
-    "<src>"];
+    "&lt;src&gt;"];
 
 var answerKey = ["c", "b", "a", "c", "b"];
 
-var qIndex = 0;         //Question Number
+var qIndex = 0;  //Question Number
 
-var userPoints = 0;     //User Points
+var userPoints = 0;  //User Points
 
 //Create function to flip through questions
 function quizStart() {
@@ -56,6 +56,7 @@ function quizStart() {
                     console.log("Correct!");
                     $("section").empty();
                     qIndex++;
+                    userPoints++;
                     quizStart();
                 }
                 else {
@@ -71,12 +72,10 @@ function quizStart() {
         if(qIndex >= question.length || seconds < 0) {
             $("section").empty();
             $("section").append("<h1>FINISHED!");
-            $("section").append("<button id=scoreButton>High Scores");
+            $("section").append(`<h3>Score: ${userPoints}`);
         }
 
-        $("#scoreButton").on("click", function() {
-            highScore();
-        });
+        
 }
 
 
@@ -96,11 +95,16 @@ function playTimer() {
 //Nav Bar
 $("body").append("<nav>");
 
+    //High Score Button
+    $("nav").append("<button id=scoreButton>High Scores");
+        $("#scoreButton").on("click", function() {
+            highScore();
+        });
+
     //Write timer in nav
     $("nav").append(`<p>Time: ${seconds}`);
-
-
-//Quiz Section
+    
+//Main Screen Section
 $("body").append("<section>");
 
 //Welcome Screen
@@ -117,21 +121,22 @@ function welcome() {
             quizStart();
             playTimer();
         });
+        
 };
 
 
 //Highscore Section
 function highScore() {
-    $("body").append("<aside>");
     $("section").empty();
+    $("body").append("<aside>");
     $("aside").append("<h1>High Scores");
+    //$("aside").append(userPoints);
     
     //Back Button to play again
-    $("aside").append("<button id='backButton'Back");
-    $("#backButton").on("click", function() {
-        $("aside").empty();
-        welcome();
-    })
+    $("aside").append("<button id='backButton'>Back").on("click", function() {
+            $("aside").remove();
+            welcome();
+        })
 }
 
 welcome();
