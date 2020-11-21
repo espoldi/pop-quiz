@@ -3,35 +3,42 @@ var question = [
     "What surrounds a string?",
     "What expresses a true false statement?",
     "What goes at the end of a line of code?",
-    "Who was the first computer programmer?"];
+    "Who was the first computer programmer?",
+    "What tags are used to suround Javascript?"];
 
 var a = [
     "Parenthesis",
     "Variable",
     "Semi-colon",
-    "Mark Zuckerberg"];
+    "Mark Zuckerberg",
+    "<html>"];
 
 var b = [
     "Curly Brackets",
     "Boolean",
     "Colon",
-    "Charles Babbage"];
+    "Charles Babbage",
+    "<script>"];
 
 var c = [
     "Quotation Marks",
     "String",
     "Period",
-    "Lady Ada Agusta"];
+    "Lady Ada Agusta",
+    "<form>"];
 
 var d = [
     "Square Brackets",
     "Float",
     "Comma",
-    "Bill Gates"];
+    "Bill Gates",
+    "<src>"];
 
-var answerKey = ["c", "b", "a", "c"];
+var answerKey = ["c", "b", "a", "c", "b"];
 
-var qIndex = 0;
+var qIndex = 0;         //Question Number
+
+var userPoints = 0;     //User Points
 
 //Create function to flip through questions
 function quizStart() {
@@ -41,6 +48,7 @@ function quizStart() {
         $("section").append(`<button id="c">${c[qIndex]}`);
         $("section").append(`<button id="d">${d[qIndex]}`);
 
+        //When button clicked, check for correct answer and move to next question
         $("button").on("click", function(event) {
             let clicked = event.target;
             
@@ -57,8 +65,18 @@ function quizStart() {
                     seconds = seconds - 10;
                     quizStart();
                 }
+        });
+
+        //End of Quiz
+        if(qIndex >= question.length || seconds < 0) {
+            $("section").empty();
+            $("section").append("<h1>FINISHED!");
+            $("section").append("<button id=scoreButton>High Scores");
         }
-    );
+
+        $("#scoreButton").on("click", function() {
+            highScore();
+        });
 }
 
 
@@ -86,8 +104,9 @@ $("body").append("<nav>");
 $("body").append("<section>");
 
 //Welcome Screen
-$("section").append(`<h1>Welcome to the Javascript Pop Quiz!`);
-$("section").append(`<h3>Try your best to answer as many questions right in 5 minutes.<br>Each wrong answer will dock you 30 seconds!<br>Good Luck!`);
+function welcome() {
+    $("section").append(`<h1>Welcome to the Javascript Pop Quiz!`);
+    $("section").append(`<h3>Try your best to answer as many questions right in 5 minutes.<br>Each wrong answer will dock you 30 seconds!<br>Good Luck!`);
 
 
     //Button to clear welcome page, start the timer, and show the first question
@@ -98,8 +117,21 @@ $("section").append(`<h3>Try your best to answer as many questions right in 5 mi
             quizStart();
             playTimer();
         });
-
+};
 
 
 //Highscore Section
-$("body").append("<aside>");
+function highScore() {
+    $("body").append("<aside>");
+    $("section").empty();
+    $("aside").append("<h1>High Scores");
+    
+    //Back Button to play again
+    $("aside").append("<button id='backButton'Back");
+    $("#backButton").on("click", function() {
+        $("aside").empty();
+        welcome();
+    })
+}
+
+welcome();
