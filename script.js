@@ -9,31 +9,38 @@ var c = ["C"];
 
 var d = ["D"];
 
-var answerKey = ["C"];
+var answerKey = ["c"];
 
+var qIndex = 0;
 
 //Create function to flip through questions
 function quizStart() {
-    for(var i; i<question.length; i++) {
-        $("section").append(`<h2>${question[i]}`);
-        $("section").append(`<button>${a[i]}`);
-        $("section").append(`<button>${b[i]}`);
-        $("section").append(`<button>${c[i]}`);
-        $("section").append(`<button>${d[i]}`);
+        $("section").append(`<h2>${question[qIndex]}`);
+        $("section").append(`<button id="a">${a[qIndex]}`);
+        $("section").append(`<button id="b">${b[qIndex]}`);
+        $("section").append(`<button id="c">${c[qIndex]}`);
+        $("section").append(`<button id="d">${d[qIndex]}`);
 
-        $("button").on("click", function() {
-            if(this === answerKey[i]) {
-                
-            }
+        $("button").on("click", function(event) {
+            let clicked = event.target;
+            
+                if(clicked.id === answerKey[qIndex]) {
+                    console.log("Correct!");
+                    qIndex++;
+                }
+                else {
+                    console.log("Wrong!");
+                    qIndex++;
+                    seconds = seconds - 10;
+                }
         });
-    }
 }
 
 
 
 
 //Create timer
-var seconds = 10;
+var seconds = 300;
 function playTimer() {
     var timerInterval = setInterval(function() {
         seconds--;
