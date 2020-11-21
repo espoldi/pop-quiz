@@ -1,15 +1,35 @@
 //arrays for questions, answer options, and answer key
-var question = ["Example Q"];
+var question = [
+    "What surrounds a string?",
+    "What expresses a true false statement?",
+    "What goes at the end of a line of code?",
+    "Who was the first computer programmer?"];
 
-var a = ["A"];
+var a = [
+    "Parenthesis",
+    "Variable",
+    "Semi-colon",
+    "Mark Zuckerberg"];
 
-var b = ["B"];
+var b = [
+    "Curly Brackets",
+    "Boolean",
+    "Colon",
+    "Charles Babbage"];
 
-var c = ["C"];
+var c = [
+    "Quotation Marks",
+    "String",
+    "Period",
+    "Lady Ada Agusta"];
 
-var d = ["D"];
+var d = [
+    "Square Brackets",
+    "Float",
+    "Comma",
+    "Bill Gates"];
 
-var answerKey = ["c"];
+var answerKey = ["c", "b", "a", "c"];
 
 var qIndex = 0;
 
@@ -27,13 +47,16 @@ function quizStart() {
                 if(clicked.id === answerKey[qIndex]) {
                     console.log("Correct!");
                     qIndex++;
+                    quizStart();
                 }
                 else {
                     console.log("Wrong!");
                     qIndex++;
                     seconds = seconds - 10;
+                    quizStart();
                 }
-        });
+        }
+    );
 }
 
 
