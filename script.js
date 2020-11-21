@@ -17,11 +17,12 @@ $("body").append("<nav>");
 //Quiz Section
 $("body").append("<section>");
 
-$("section").append("<button id='play-button'>Play");
+    //Button to start the timer and show the first question
+    $("section").append("<button id='play-button'>Play");
 
-$("#play-button").on("click",function(){
-    playTimer();
-});
+        $("#play-button").on("click",function(){
+            playTimer();
+        });
 
 
 
