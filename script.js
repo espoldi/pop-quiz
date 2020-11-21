@@ -24,6 +24,13 @@ $("body").append("<section>");
             playTimer();
         });
 
+//arrays for questions, answer options, and answer key
+var question = [""];
+var a = [""];
+var b = [""];
+var c = [""];
+var d = [""];
+var answerKey = [""];
 
 
 //Highscore Section
