@@ -40,6 +40,8 @@ var qIndex = 0;  //Question Number
 
 var userPoints = 0;  //User Points
 
+var scoreTable = [];  //High Score Array
+
 //Create function to flip through questions
 function quizStart() {
         $("section").append(`<h2>${question[qIndex]}`);
@@ -53,18 +55,20 @@ function quizStart() {
             let clicked = event.target;
             
                 if(clicked.id === answerKey[qIndex]) {
-                    console.log("Correct!");
                     $("section").empty();
                     qIndex++;
                     userPoints++;
                     quizStart();
+                    $("section").append("<footer><hr>Correct!");
+                    setTimeout(function() {$("footer").fadeOut().empty()}, 1000);
                 }
                 else {
-                    console.log("Wrong!");
                     $("section").empty();
                     qIndex++;
                     seconds = seconds - 10;
                     quizStart();
+                    $("section").append("<footer><hr>Wrong!");
+                    setTimeout(function() {$("footer").fadeOut().empty()}, 1000);
                 }
         });
 
@@ -73,6 +77,8 @@ function quizStart() {
             $("section").empty();
             $("section").append("<h1>FINISHED!");
             $("section").append(`<h3>Score: ${userPoints}`);
+            
+            scoreTable.push(userPoints);
         }
 
         
@@ -97,9 +103,7 @@ $("body").append("<nav>");
 
     //High Score Button
     $("nav").append("<button id=scoreButton>High Scores");
-        $("#scoreButton").on("click", function() {
-            highScore();
-        });
+        $("#scoreButton").on("click", highScore());
 
     //Write timer in nav
     $("nav").append(`<p>Time: ${seconds}`);
@@ -128,13 +132,12 @@ function welcome() {
 //Highscore Section
 function highScore() {
     $("section").empty();
-    $("body").append("<aside>");
-    $("aside").append("<h1>High Scores");
-    //$("aside").append(userPoints);
+    $("section").append("<h1>High Scores");
+    $("section").append(scoreTable);
     
     //Back Button to play again
-    $("aside").append("<button id='backButton'>Back").on("click", function() {
-            $("aside").remove();
+    $("section").append("<button id='backButton'>Back").on("click", function() {
+            $("section").empty();
             welcome();
         })
 }
