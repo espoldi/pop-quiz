@@ -5,22 +5,25 @@ $("body").append("<nav>");
     var seconds = 10;
     $("nav").append(`<p>Time: ${seconds}`);
 
-    function setTime() {
+    function playTimer() {
         var timerInterval = setInterval(function() {
             seconds--;
             $("p")[0].textContent = `Time: ${seconds}`;
         
-        if(seconds === 0) {
-            clearInterval(timerInterval);
-        }
+        if(seconds === 0) {clearInterval(timerInterval);}
         }, 1000);
     }
     
-    setTime();
-
-
 //Quiz Section
 $("body").append("<section>");
+
+$("section").append("<button id='play-button'>Play");
+
+$("#play-button").on("click",function(){
+    playTimer();
+});
+
+
 
 //Highscore Section
 $("body").append("<aside>");
