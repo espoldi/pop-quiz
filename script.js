@@ -46,11 +46,13 @@ function quizStart() {
             
                 if(clicked.id === answerKey[qIndex]) {
                     console.log("Correct!");
+                    $("section").empty();
                     qIndex++;
                     quizStart();
                 }
                 else {
                     console.log("Wrong!");
+                    $("section").empty();
                     qIndex++;
                     seconds = seconds - 10;
                     quizStart();
@@ -83,10 +85,16 @@ $("body").append("<nav>");
 //Quiz Section
 $("body").append("<section>");
 
-    //Button to start the timer and show the first question
+//Welcome Screen
+$("section").append(`<h1>Welcome to the Javascript Pop Quiz!`);
+$("section").append(`<h3>Try your best to answer as many questions right in 5 minutes.<br>Each wrong answer will dock you 30 seconds!<br>Good Luck!`);
+
+
+    //Button to clear welcome page, start the timer, and show the first question
     $("section").append("<button id='play-button'>Play");
 
         $("#play-button").on("click",function(){
+            $("section").empty();
             quizStart();
             playTimer();
         });
