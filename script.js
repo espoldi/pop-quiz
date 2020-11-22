@@ -77,6 +77,13 @@ function quizStart() {
             $("section").empty();
             $("section").append("<h1>FINISHED!");
             $("section").append(`<h3>Score: ${userPoints}`);
+
+            //Back Button to play again
+            $("section").append("<button id='backButton'>Back");
+            $("#backButton").on("click", function() {
+                    $("section").empty();
+                    welcome();
+                })
         }
 }
 
@@ -122,6 +129,7 @@ function welcome() {
         $("#play-button").on("click",function(){
             $("section").empty();
             qIndex = 0;
+            seconds = 300;
             quizStart();
             playTimer();
         });
@@ -135,7 +143,7 @@ function highScore() {
     
     //Back Button to play again
     $("section").append("<button id='backButton'>Back");
-    $("backButton").on("click", function() {
+    $("#backButton").on("click", function() {
             $("section").empty();
             welcome();
         })
