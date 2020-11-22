@@ -1,7 +1,5 @@
 # pop-quiz
 
-# PasswordGenerator
-
 My creation uses JQuery to make a short dynamic quiz about Javascript. By removing buttons from view, I allow the rest of the program to use event listeners to test whether the answers are right or wrong. Afterwards, using a prompt to get the initials of the user to generate a high scores section where you can see who had which scores.
 
 ## Table of Contents
