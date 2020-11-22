@@ -22,7 +22,7 @@ A good example and reference for using JQuery to make dynamic animations and fun
 
 [Live URL](https://espoldi.github.io/pop-quiz/)
 
-![Website Screenshot](/screenshot.png)
+![Website Screenshot](/screenshot.jpeg)
 
 ## License
 
