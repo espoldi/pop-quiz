@@ -40,10 +40,9 @@ var qIndex = 0;  //Question Number
 
 var userPoints = 0;  //User Points
 
-var scoreTable = [];  //High Score Array
-
 //Create function to flip through questions
 function quizStart() {
+        setTimeout(function() {$("scoreButton").fadeOut().empty()});
         $("section").append(`<h2>${question[qIndex]}`);
         $("section").append(`<button id="a">${a[qIndex]}`);
         $("section").append(`<button id="b">${b[qIndex]}`);
@@ -78,11 +77,7 @@ function quizStart() {
             $("section").empty();
             $("section").append("<h1>FINISHED!");
             $("section").append(`<h3>Score: ${userPoints}`);
-            
-            scoreTable.push(userPoints);
         }
-
-        
 }
 
 
@@ -104,7 +99,10 @@ $("body").append("<nav>");
 
     //High Score Button
     $("nav").append("<button id=scoreButton>High Scores");
-        $("#scoreButton").on("click", highScore());
+        $("#scoreButton").on("click", function() {
+            highScore();
+        })
+    
 
     //Write timer in nav
     $("nav").append(`<p>Time: ${seconds}`);
@@ -123,21 +121,21 @@ function welcome() {
 
         $("#play-button").on("click",function(){
             $("section").empty();
+            qIndex = 0;
             quizStart();
             playTimer();
         });
         
 };
 
-
 //Highscore Section
 function highScore() {
     $("section").empty();
     $("section").append("<h1>High Scores");
-    $("section").append(scoreTable);
     
     //Back Button to play again
-    $("section").append("<button id='backButton'>Back").on("click", function() {
+    $("section").append("<button id='backButton'>Back");
+    $("backButton").on("click", function() {
             $("section").empty();
             welcome();
         })
