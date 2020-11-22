@@ -80,7 +80,7 @@ function quizStart() {
             $("section").append(`<h3>Score: ${userPoints}`);
             var initials = prompt("Write your initials.");
 
-            scoreboard.push(`${userPoints} --- ${initials}`);
+            scoreboard.push(`${userPoints} --- ${initials.toUpperCase()}`);
 
             //Back Button to play again
             $("section").append("<button id='backButton'>Back");
