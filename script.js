@@ -42,7 +42,6 @@ var userPoints = 0;  //User Points
 
 //Create function to flip through questions
 function quizStart() {
-        setTimeout(function() {$("scoreButton").fadeOut().empty()});
         $("section").append(`<h2>${question[qIndex]}`);
         $("section").append(`<button id="a">${a[qIndex]}`);
         $("section").append(`<button id="b">${b[qIndex]}`);
@@ -104,13 +103,6 @@ function playTimer() {
 //Nav Bar
 $("body").append("<nav>");
 
-    //High Score Button
-    $("nav").append("<button id=scoreButton>High Scores");
-        $("#scoreButton").on("click", function() {
-            highScore();
-        })
-    
-
     //Write timer in nav
     $("nav").append(`<p>Time: ${seconds}`);
     
@@ -122,6 +114,12 @@ function welcome() {
     $("section").append(`<h1>Welcome to the Javascript Pop Quiz!`);
     $("section").append(`<h3>Try your best to answer as many questions right in 5 minutes.<br>Each wrong answer will dock you 30 seconds!<br>Good Luck!`);
 
+    //High Score Button
+    $("nav").prepend("<button id=scoreButton>High Scores");
+        $("#scoreButton").on("click", function() {
+            highScore();
+        })
+
 
     //Button to clear welcome page, start the timer, and show the first question
     $("section").append("<button id='play-button'>Play");
@@ -132,6 +130,7 @@ function welcome() {
             seconds = 300;
             quizStart();
             playTimer();
+            setTimeout(function() {$("#scoreButton").fadeOut().empty()});
         });
         
 };
@@ -139,6 +138,7 @@ function welcome() {
 //Highscore Section
 function highScore() {
     $("section").empty();
+    setTimeout(function() {$("#scoreButton").fadeOut().empty()});
     $("section").append("<h1>High Scores");
     
     //Back Button to play again
