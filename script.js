@@ -69,6 +69,7 @@ function quizStart() {
                     quizStart();
                     $("section").append("<footer><hr>Wrong!");
                     setTimeout(function() {$("footer").fadeOut().empty()}, 1000);
+                    
                 }
         });
 
@@ -94,7 +95,7 @@ function playTimer() {
         seconds--;
         $("p")[0].textContent = `Time: ${seconds}`;
     
-    if(seconds === 0) {clearInterval(timerInterval);}
+    if(seconds === 0 || qIndex >= question.length) {clearInterval(timerInterval);}
     }, 1000);
 }
 
