@@ -40,6 +40,8 @@ var qIndex = 0;  //Question Number
 
 var userPoints = 0;  //User Points
 
+var scoreboard = [];
+
 //Create function to flip through questions
 function quizStart() {
         $("section").append(`<h2>${question[qIndex]}`);
@@ -76,6 +78,9 @@ function quizStart() {
             $("section").empty();
             $("section").append("<h1>FINISHED!");
             $("section").append(`<h3>Score: ${userPoints}`);
+            var initials = prompt("Write your initials.");
+
+            scoreboard.push(`${userPoints} --- ${initials}`);
 
             //Back Button to play again
             $("section").append("<button id='backButton'>Back");
@@ -128,6 +133,7 @@ function welcome() {
             $("section").empty();
             qIndex = 0;
             seconds = 300;
+            userPoints = 0;
             quizStart();
             playTimer();
             setTimeout(function() {$("#scoreButton").fadeOut().empty()});
@@ -140,6 +146,13 @@ function highScore() {
     $("section").empty();
     setTimeout(function() {$("#scoreButton").fadeOut().empty()});
     $("section").append("<h1>High Scores");
+    $("section").append("<hr>");
+    for(var i=0; i<scoreboard.length; i++) {
+        $("section").append(scoreboard[i]);
+        $("section").append("<hr>");
+    }
+    $("section").append("<br>");
+
     
     //Back Button to play again
     $("section").append("<button id='backButton'>Back");
